@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content=" #23235b">
+    <link rel="stylesheet" href="style.css">
+  <title>Quadratic calculator</title>
+
+</head>
+<body>
+  <div id="flex-container">
+  <form>
+      <h1>Quadratic Calculator</h1>
+    <input id="coefficient1" type="text" placeholder="a">
+    <input id="coefficient2" type="text" placeholder="b">
+    <input id="coefficient3" type="text" placeholder="c">
+    <input type="submit">
+    </form>
+    </div>
+       <div id="answer"></div>
+      <script>
+   document.addEventListener('submit',function(event){
+     event.preventDefault()
+     document.querySelector('form').onsubmit = function(){
+       let root1, root2;
+
+// take input from the user
+let a = document.querySelector('#coefficient1').value;
+let b = document.querySelector('#coefficient2').value;
+let c = document.querySelector('#coefficient3').value;
+// calculate discriminant
+let discriminant = b * b - 4 * a * c;
+
+// condition for real and different roots
+if (discriminant > 0) {
+    root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+
+    // result
+   // console.log(`The roots of quadratic equation are ${root1} and ${root2}`);
+  document.querySelector('#answer'). innerHTML = `The roots of quadratic equation are ${root1} and ${root2}`
+}
+
+// condition for real and equal roots
+else if (discriminant == 0) {
+    root1 = root2 = -b / (2 * a);
+
+    // result
+  //  console.log(`The roots of quadratic equation are ${root1} and ${root2}`);
+  document.querySelector('#answer'). innerHTML = `The roots of quadratic equation are ${root1} and ${root2}`
+}
+
+// if roots are not real
+else {
+    let realPart = (-b / (2 * a));
+    let imagPart = (Math.sqrt(-discriminant) / (2 * a));
+
+    // result
+  /*  console.log(
+    `The roots of quadratic equation are ${realPart} + ${imagPart}i and ${realPart} - ${imagPart}i`*/
+   document.querySelector('#answer'). innerHTML = `The roots of quadratic equation are ${realPart} + ${imagPart}i and ${realPart} - ${imagPart}i`
+  
+}
+     }
+   })
+ </script>
+</body>
+</html>
